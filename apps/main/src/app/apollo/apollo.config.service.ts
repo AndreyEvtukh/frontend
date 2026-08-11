@@ -19,7 +19,7 @@ export class ApolloConfigService {
 
     public init(): ApolloClient.Options {
         const terminatingLink: ApolloLink = this.httpLink.create({
-            uri: `http://${environment.api_host}:${environment.api_port}${BFF.API_URL}`,
+            uri: `${environment.api_host}:${environment.api_port}${BFF.API_URL}`,
         });
 
         const errorLink = new ErrorLink(({ error }) => {
