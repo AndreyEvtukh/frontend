@@ -1,17 +1,13 @@
 import 'dotenv/config';
 import express from 'express';
 import { ProductsService } from '@org/api/products';
-import {
-    ApiResponse,
-    Product,
-    ProductFilter,
-    PaginatedResponse,
-} from '@org/models';
 
-const host = process.env.API_HOST ?? 'localhost';
-const port = process.env.API_PORT ? Number(process.env.API_PORT) : 3005;
-const remote_port = process.env.ROMOTE_PORT ? Number(process.env.ROMOTE_PORT) : 8080;
-const SPRING_BOOT_URL = `http://${host}:${remote_port}/graphql`;
+const port: number = Number(process.env.API_PORT);
+const host: string = process.env.API_HOST ?? '0.0.0.0';
+
+const SPRING_GRAPHQL_URL: string = process.env.SPRING_GRAPHQL_URL ??
+    `http://localhost:${process.env.REMOTE_PORT || 8080}/graphql`;
+
 const app = express();
 const productsService = new ProductsService();
 
@@ -20,50 +16,74 @@ app.use(express.json());
 
 // CORS configuration for Angular app
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header(
-        'Access-Control-Allow-Methods',
-        'GET, POST, PUT, DELETE, OPTIONS',
-    );
+    const origin = req.headers.origin;
+    const allowed = [
+        'http://localhost:4200',
+        'https://dev.andrey-evtukh.vercel.app',
+        'https://andrey-evtukh.vercel.app',
+    ];
+
+    if (origin && allowed.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin);
+        res.header('Access-Control-Allow-Credentials', 'true');
+    } else {
+        res.header('Access-Control-Allow-Origin', '*');
+    }
+
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header(
         'Access-Control-Allow-Headers',
-        'Origin, X-Requested-With, Content-Type, Accept',
+        'Origin, X-Requested-With, Content-Type, Accept, Authorization',
     );
+
     if (req.method === 'OPTIONS') {
-        res.sendStatus(200);
-    } else {
-        next();
+        res.sendStatus(204);
+        return;
     }
+
+    next();
 });
 
 app.get('/', (req, res) => {
-    res.send({message: 'Hello API'});
+    res.send({ message: 'Hello API', springGraphql: SPRING_GRAPHQL_URL });
 });
 
-app.post('/graphql', async (req, res) => {
+app.post('/api/graphql', async (req, res) => {
     try {
-        const response = await fetch(SPRING_BOOT_URL, {
+        const headers: Record<string, string> = {
+            'Content-Type': 'application/json',
+        };
+
+        if (req.headers.authorization) {
+            headers['Authorization'] = String(req.headers.authorization);
+        }
+
+        const response = await fetch(SPRING_GRAPHQL_URL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                // Если нужно прокидывать Authorization:
-                ...(req.headers.authorization
-                    ? {Authorization: req.headers.authorization}
-                    : {}),
-            },
-            body: JSON.stringify(req.body),
+            headers,
+            body: JSON.stringify({
+                query: req.body?.query,
+                variables: req.body?.variables,
+                operationName: req.body?.operationName,
+            }),
         });
 
         const data = await response.json();
-
-        // Возвращаем точно такой же статус и тело, что пришло от Spring Boot
         res.status(response.status).json(data);
     } catch (error) {
         console.error('GraphQL proxy error:', error);
-        res.status(500).json({errors: [{message: error instanceof Error ? error.message : 'Proxy error'}]});
+        res.status(502).json({
+            errors: [
+                {
+                    message:
+                        error instanceof Error ? error.message : 'Proxy error',
+                },
+            ],
+        });
     }
 });
 
 app.listen(port, host, () => {
-    console.log(`[ SSR ready ] http://${host}:${port}`);
+    console.log(`[SSR API] http://${host}:${port}`);
+    console.log(`[Proxy →] ${SPRING_GRAPHQL_URL}`);
 });
