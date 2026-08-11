@@ -11,7 +11,6 @@ const SPRING_GRAPHQL_URL: string = process.env.SPRING_GRAPHQL_URL ??
 const app = express();
 const productsService = new ProductsService();
 
-// Middleware
 app.use(express.json());
 
 // CORS configuration for Angular app
