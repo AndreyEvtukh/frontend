@@ -5,7 +5,7 @@
     "scripts": {
         "ng": "nx",
         "nx": "nx",
-        "start": "concurrently \"yarn serve:ssr\" \"yarn dev\"",
+        "start": "yarn dev",
         "restart": "yarn build && yarn start",
         "dev": "nx serve main --configuration development",
         "db": "node apps/main/src/server/db.server.ts",
@@ -54,6 +54,7 @@
         "graphql": "^17.0.2",
         "ngx-logger": "^5.0.12",
         "normalize.css": "^8.0.1",
+        "rxjs": "~7.8.2",
         "zone.js": "^0.16.2"
     },
     "devDependencies": {
