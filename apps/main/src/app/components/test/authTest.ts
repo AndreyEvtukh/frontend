@@ -25,10 +25,7 @@ import gql from 'graphql-tag';
     `,
 })
 export class AuthTestComponent {
-    private readonly apiUrl = `http://${environment.api_host}:${environment.api_port}/api`;
-
     private readonly auth = inject(AuthService);
-    private readonly http = inject(HttpClient);
     private readonly apollo = inject(Apollo);
     readonly result = signal('');
 

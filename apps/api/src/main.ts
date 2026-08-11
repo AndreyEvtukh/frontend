@@ -2,8 +2,8 @@ import 'dotenv/config';
 import express from 'express';
 import { ProductsService } from '@org/api/products';
 
-const port: number = Number(process.env.API_PORT);
 const host: string = process.env.API_HOST ?? '0.0.0.0';
+const port: number = Number(process.env.API_PORT);
 
 const SPRING_GRAPHQL_URL: string = process.env.SPRING_GRAPHQL_URL ??
     `http://localhost:${process.env.REMOTE_PORT || 8080}/graphql`;
