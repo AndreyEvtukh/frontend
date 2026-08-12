@@ -98,7 +98,7 @@ export default class RegisterDialogComponent {
 
     protected register = () => {
         const input = {
-            email: 'andrey.evtukh@gmail.com',
+            email: 'ric_a@mail.ru',
             username: 'Ivan',
             password_hash: 'Secret123!'
         }
