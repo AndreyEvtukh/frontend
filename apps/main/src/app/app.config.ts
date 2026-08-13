@@ -13,7 +13,7 @@ import { ApolloConfigService } from "./apollo/apollo.config.service";
 import { provideApollo } from "apollo-angular";
 
 function initializeApp(apolloConfigService: ApolloConfigService) {
-
+    return;
 }
 
 export const appConfig: ApplicationConfig = {

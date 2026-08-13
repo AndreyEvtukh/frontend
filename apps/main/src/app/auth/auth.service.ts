@@ -46,7 +46,7 @@ const ME_QUERY = gql`
 export class AuthService {
     private readonly apollo = inject(Apollo);
     private readonly tokenService = inject(AuthTokenService);
-    public returnScrollY: number = 0;
+    public returnScrollY = 0;
 
     async register(username: string, email: string, password: string) {
         const result = await firstValueFrom(

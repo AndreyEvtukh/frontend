@@ -3,6 +3,8 @@
 html {
     scroll-behavior: smooth;
     line-height: normal;
+
+    --mat-progress-spinner-active-indicator-color: var(--color-bronze);
 }
 
 .mat-mdc-dialog-container,
@@ -104,12 +106,12 @@ html {
 }
 
 /* Light */
-/*@font-face {*/
-/*    font-family: "OpenSans-Light1";*/
-/*    src: url("./assets/fonts/light.ttf") format("woff");*/
-/*    font-style: normal;*/
-/*    font-display: swap;*/
-/*}*/
+@font-face {
+    font-family: "Light";
+    src: url("./assets/fonts/light.ttf") format("woff");
+    font-style: normal;
+    font-display: swap;
+}
 
 /*!* Regular *!*/
 /*@font-face {*/
@@ -121,19 +123,18 @@ html {
 
 /* Medium */
 @font-face {
-    font-family: "OpenSans-Medium";
+    font-family: "Medium";
     src: url("./assets/fonts/medium.ttf") format("woff");
     font-style: normal;
     font-display: swap;
 }
 
-/*!* Bold *!*/
-/*@font-face {*/
-/*    font-family: "OpenSans-Bold";*/
-/*    src: url("./assets/fonts/bold.ttf") format("woff");*/
-/*    font-style: normal;*/
-/*    font-display: swap;*/
-/*}*/
+@font-face {
+    font-family: "mono";
+    src: url("./assets/fonts/medium.ttf") format("woff");
+    font-style: italic;
+    font-display: swap;
+}
 
 @theme {
     --color-transparent: #000000000;
@@ -150,7 +151,7 @@ html {
     --color-dark-9: #f2f2f2;
     --color-white: #fff;
     --color-bronze: #ffc166;
-    --color-bronze-30: #ffc16633;
+    --color-bronze-30: #ffc16616;
     --color-pink: #93278f;
     --color-gold: #ffff00;
 
@@ -164,6 +165,10 @@ html {
 
     --shadow-banner: 0 0 50px rgb(0 0 0 / 0.25);
     --shadow-sm: 0 0 30px rgb(0 0 0 / 0.6);
+
+    /*--font-light: "Light";*/
+    /*--font-medium: "Medium";*/
+    --font-monospace: monospace, ui-monospace, SFMono-Regular;
 }
 
 @utility gradient-fade-black {

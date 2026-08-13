@@ -1,4 +1,4 @@
-import { DestroyRef, inject, Injectable, signal, Signal } from '@angular/core';
+import { DestroyRef, inject, Injectable, signal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })

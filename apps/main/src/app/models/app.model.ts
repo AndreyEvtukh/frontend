@@ -7,6 +7,8 @@ export const ROUTE_PATH = {
     CONTACTS: "contacts",
     LOGIN: "auth/login",
     REGISTER: "auth/register",
+    VERIFY: "auth/verify",
+    CONGRATULATIONS: "auth/congratulations",
 };
 
 export const NAV_LOCATION= {
@@ -42,7 +44,7 @@ export interface MainPortfolioLink {
 
 export interface UIButton {
     id?: number | string;
-    link: string;
+    link?: string;
     label: string;
     isDisabled?: boolean;
     labelClass?: string;
@@ -52,6 +54,8 @@ export interface UIButton {
     hoverClass?: string;
     icon?: string;
     iconPosition?: 'right' | 'left';
+    type?: 'button' | 'link';
+    action?: () => void;
 }
 
 export interface Testimonial {
@@ -84,4 +88,5 @@ export const ICONS = {
     EYE_OFF: "eye-off",
     EYE_ON: "eye-on",
     DOWNLOAD: "download",
+    SUCCESS: "success",
 } as const;

@@ -1,7 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../../../../environments/environment";
 import { Apollo } from "apollo-angular";
 import gql from 'graphql-tag';
 

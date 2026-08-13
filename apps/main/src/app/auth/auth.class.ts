@@ -18,22 +18,24 @@ export abstract class AuthClass implements OnInit, OnDestroy {
     protected returnScrollY = 0;
     protected abstract component: any;
 
-    ngOnInit() {
+    ngOnInit(data?: any, config = {}) {
         this.returnScrollY = this.authService.returnScrollY ?? 0;
 
         this.ref = this.dialog.open(this.component, {
             width: '420px',
             maxWidth: '95vw',
             panelClass: 'auth-dialog-panel',
-            closeOnNavigation: false
+            closeOnNavigation: false,
+            ...config,
+            data
         });
 
         this.ref.afterClosed().subscribe((result) => {
             if (result === 'switch') return;
 
-            this.isBrowser && history.replaceState(null, '', `/#${this.scrollService.currentFragment()}`)
+            if (this.isBrowser) history.replaceState(null, '', `/#${this.scrollService.currentFragment()}`)
             this.router.navigate([''], { fragment: this.scrollService.currentFragment() });
-            this.isBrowser && window.scrollTo({ top: this.authService.returnScrollY });
+            if (this.isBrowser) window.scrollTo({ top: this.authService.returnScrollY });
         });
     }
 

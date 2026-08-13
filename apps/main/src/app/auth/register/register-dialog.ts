@@ -1,4 +1,4 @@
-import { Component, computed, inject, Signal, signal } from '@angular/core';
+import { Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
 import { ICONS, ROUTE_PATH } from "../../models/app.model";
 import { MatDialogActions, MatDialogRef } from "@angular/material/dialog";
 import { MatFormField, MatInputModule, MatLabel } from "@angular/material/input";
@@ -17,13 +17,21 @@ import { Router } from "@angular/router";
 import { MatchPasswordDirective } from "../../directives/match-password.directive";
 import { Apollo } from "apollo-angular";
 import { Register } from "../../graphql/register-operations";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { NgClass } from "@angular/common";
+import { AUTH } from "../../models/constatnts";
 
 @Component({
     selector: 'app-register',
     imports: [
-        MatIcon, MatDialogActions, MatLabel, MatFormField, MatInputModule, MatFormFieldModule, ReactiveFormsModule, FormsModule, MatchPasswordDirective],
+        MatIcon,
+        MatDialogActions, MatLabel, MatFormField,
+        MatInputModule, MatFormFieldModule, ReactiveFormsModule,
+        FormsModule, MatchPasswordDirective, MatProgressSpinnerModule,
+        NgClass],
     templateUrl: `register-dialog.html`,
     styleUrl: 'register-dialog.css',
+    animations: [AUTH.STATUS_ANIMATION],
 })
 export default class RegisterDialogComponent {
     private readonly apollo = inject(Apollo);
@@ -73,7 +81,9 @@ export default class RegisterDialogComponent {
         ])
     });
 
-    protected waiting: Signal<boolean> = signal<boolean>(false);
+    protected waiting: WritableSignal<boolean> = signal<boolean>(false);
+    protected response: WritableSignal<any> = signal<any>({});
+    protected responseMsg: WritableSignal<boolean> = signal<boolean>(false);
     protected formSignal = signal({
         [this.FORM_FIELD.USERNAME]: '',
         [this.FORM_FIELD.EMAIL]: '',
@@ -93,30 +103,66 @@ export default class RegisterDialogComponent {
 
     protected goLogin = async (): Promise<void> => {
         await this.router.navigate([ROUTE_PATH.LOGIN]);
-        this.dialogRef!.close('switch');
+        if (this.dialogRef) this.dialogRef.close('switch');
+    }
+
+    protected goVerify = async (): Promise<void> => {
+        const email = this.form.controls[this.FORM_FIELD.EMAIL].value.trim();
+        const username = this.form.controls[this.FORM_FIELD.USERNAME].value.trim();
+        const password_hash = this.form.controls[this.FORM_FIELD.PASSWORD].value.trim();
+
+        const success = await this.router.navigate(
+            [ROUTE_PATH.VERIFY],
+            {
+                state: {
+                    email,
+                    username,
+                    password_hash
+                }
+            }
+        );
+
+        if (success) {
+            queueMicrotask(() => this.dialogRef.close('switch'));
+        }
     }
 
     protected register = () => {
         const input = {
-            email: 'ric_a@mail.ru',
-            username: 'Ivan',
-            password_hash: 'Secret123!'
+            email: this.form.controls[this.FORM_FIELD.EMAIL].value,
+            username: this.form.controls[this.FORM_FIELD.USERNAME].value,
+            password_hash: this.form.controls[this.FORM_FIELD.PASSWORD].value
         }
+
+        this.waiting.set(true)
+        this.responseMsg.set(false);
         this.apollo.mutate(
             Register.requestRegistration(input)
         ).subscribe({
-            next: (result) => console.error(result.data),
-            error: (err) => console.error(err),
+            next: (data) => {
+                this.waiting.set(false);
+                this.goVerify();
+            },
+            error: ({ message }) => {
+                this.responseMsg.set(true);
+                this.response.set({
+                    ok: false,
+                    message
+                })
+                this.waiting.set(false);
+            }
         });
     }
 
-    protected close = () => {
-        this.dialogRef.close();
-    }
+    protected close = () => this.dialogRef.close();
 
     protected doBlurredInput(input: string) {
         this.form.controls[input].markAsTouched();
         this.form.controls[input].markAsDirty();
+    }
+
+    protected dismissResponseMsg() {
+        this.responseMsg.set(false);
     }
 
     protected readonly ICONS = ICONS;

@@ -12,4 +12,14 @@ export const authRoutes: Routes = [
         loadComponent: () =>
             import('./register/register-route.component').then(m => m.default),
     },
+    {
+        path: ROUTE_PATH.VERIFY,
+        loadComponent: () =>
+            import('./verify/verify-route.component').then(m => m.default),
+    },
+    {
+        path: ROUTE_PATH.CONGRATULATIONS,
+        loadComponent: () =>
+            import('./congratulations/congratulations-route.component').then(m => m.default),
+    },
 ];

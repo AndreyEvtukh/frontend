@@ -1,0 +1,22 @@
+<section
+    class="bg-dark-2 flex flex-col items-center h-full px-8 pt-8 pb-4 overflow-hidden rounded-md border border-dark-3 justify-center items-center gap-28">
+    <div class="flex flex-col items-center justify-center w-full gap-8">
+
+        <div @okAnimation class="w-30 h-30 aspect-square rounded-full flex flex-col justify-center items-center">
+            <mat-icon [svgIcon]="ICONS.SUCCESS" class="!h-full !w-full color-bronze"></mat-icon>
+        </div>
+
+        <h2 class="uppercase font-medium">Congratulations!</h2>
+        <p>You’ve successfully logged in.</p>
+
+    </div>
+    <mat-dialog-actions align="end" class="relative w-full flex flex-col justify-center gap-6">
+        <button matButton="filled"
+                class="relative uppercase max-w-2xs h-10 w-full rounded-sm p-2 font-medium cursor-pointer transition-all duration-200
+                         bg-bronze text-dark-2 border-bronze border"
+                (click)="goMain()">
+            <span>Continue</span>
+        </button>
+    </mat-dialog-actions>
+
+</section>

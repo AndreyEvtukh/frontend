@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, Signal, signal } from '@angular/core';
+import { Component, inject, OnInit, Signal, signal, WritableSignal } from '@angular/core';
 import { ICONS, ROUTE_PATH } from "../../models/app.model";
 import { MatIcon } from "@angular/material/icon";
 import { MatDialogActions, MatDialogRef } from "@angular/material/dialog";
@@ -14,18 +14,27 @@ import {
 } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { Router } from "@angular/router";
+import { Register } from "../../graphql/register-operations";
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
+import { Apollo } from "apollo-angular";
+import { AUTH } from "../../models/constatnts";
 
 @Component({
     selector: 'app-login-dialog',
-    imports: [MatIcon, MatDialogActions, MatLabel, MatFormField, MatInputModule, MatFormFieldModule, ReactiveFormsModule],
+    imports: [MatIcon, MatDialogActions, MatLabel, MatFormField, MatInputModule, MatFormFieldModule, ReactiveFormsModule, MatProgressSpinner],
     templateUrl: `login-dialog.html`,
     styleUrl: 'login-dialog.css',
+    animations: [AUTH.STATUS_ANIMATION],
 })
 export default class LoginDialogComponent implements OnInit {
+    private readonly apollo = inject(Apollo);
+
     private dialogRef: MatDialogRef<any> | null = inject(MatDialogRef<LoginDialogComponent>, { optional: true });
     private router = inject(Router);
 
-    waiting: Signal<boolean> = signal<boolean>(false);
+    protected waiting: WritableSignal<boolean> = signal<boolean>(false);
+    protected response: WritableSignal<any> = signal<any>({});
+    protected responseMsg: WritableSignal<boolean> = signal<boolean>(false);
     form!: FormGroup;
 
     private emailRegExp = new RegExp("^[\\w-]+(\\.[\\w-]+)*@([a-z0-9-]+(\\.[a-z0-9-]+)*?\\.[a-z]{2,6}|(\\d{1,3}\\.){3}\\d{1,3})(:\\d{4})?$");
@@ -45,12 +54,33 @@ export default class LoginDialogComponent implements OnInit {
     }
 
     protected signIn() {
-        // this.dialogRef.close();
+        const input = {
+            email: this.form.controls['email'].value as string,
+            password_hash: this.form.controls['password'].value as string
+        }
+
+        this.responseMsg.set(false);
+        this.waiting.set(true)
+        this.apollo.mutate(
+            Register.login(input)
+        ).subscribe({
+            next: () => {
+                this.waiting.set(false);
+            },
+            error: ({ message }) => {
+                this.responseMsg.set(true);
+                this.response.set({
+                    ok: false,
+                    message
+                })
+                this.waiting.set(false);
+            }
+        });
     }
 
     protected async goRegister() {
         await this.router.navigate([ROUTE_PATH.REGISTER]);
-        this.dialogRef!.close('switch');
+        if (this.dialogRef) this.dialogRef.close('switch');
     }
 
     private noWhitespace: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -80,6 +110,10 @@ export default class LoginDialogComponent implements OnInit {
     protected doBlurredInput(input: string) {
         this.form.controls[input].markAsTouched();
         this.form.controls[input].markAsDirty();
+    }
+
+    protected dismissResponseMsg() {
+        this.responseMsg.set(false);
     }
 
     protected readonly ICONS = ICONS;

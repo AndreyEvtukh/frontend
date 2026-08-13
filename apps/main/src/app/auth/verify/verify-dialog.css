@@ -1,0 +1,27 @@
+.active-cell {
+    transition: all 0.2s ease-in-out;
+    border: var(--color-bronze) 1px solid;
+    background-color: var(--color-dark-9);
+    color: var(--color-dark-1);
+
+    &:after {
+        content: "";
+        width: 2px;
+        height: 24px;
+        position: absolute;
+        bottom: calc(50% - 12px);
+        left: 50%;
+        transform: translate(-10px);
+        background: var(--color-dark-1);
+        animation: blink-animation 1s steps(2) infinite;
+    }
+}
+
+@keyframes blink-animation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

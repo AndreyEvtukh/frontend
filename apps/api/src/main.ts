@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import { ProductsService } from '@org/api/products';
 
-const host: string = process.env.API_HOST ?? '0.0.0.0';
+const host: string = process.env.API_HOST ?? 'http://localhost';
 const port: number = Number(process.env.API_PORT);
 
 const SPRING_GRAPHQL_URL: string = process.env.SPRING_GRAPHQL_URL ??

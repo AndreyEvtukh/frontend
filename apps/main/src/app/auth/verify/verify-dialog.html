@@ -1,0 +1,69 @@
+<section
+    class="bg-dark-2 flex flex-col items-center h-full px-8 pt-8 pb-4 overflow-hidden rounded-md border border-dark-3 justify-center items-center">
+    <div class="flex flex-col items-center justify-center w-full gap-8">
+        <div class="flex flex-row absolute top-0 left-0 items-center pt-4 pl-4 cursor-pointer" (click)="goRegister()">
+            <mat-icon [svgIcon]="ICONS.ArrowR" class="!h-4 aspect-square color-dark-9 transform rotate-180"></mat-icon>
+            <span>Back</span>
+        </div>
+
+        <div class="w-16 h-16 aspect-square rounded-full bg-bronze-30 flex flex-col justify-center items-center">
+            <mat-icon [svgIcon]="ICONS.Login" class="color-bronze"></mat-icon>
+        </div>
+
+        <h2 class="uppercase font-medium">Verify your identity</h2>
+        <p class="text-center px-4">Please enter the verification code that was sent to <span
+            class="font-medium">{{ email }}</span></p>
+
+        <input matInput
+               #otpInput
+               type="text"
+               pattern="[0-9]*"
+               maxlength="6"
+               class="absolute h-0 w-0 opacity-0 pointer-events-none"
+               [formControl]="inputFormControl"
+               (input)="onInput($event)"
+               (keydown)="onKeyDown($event)"
+               (paste)="onPaste($event)"
+               (focus)="focussed.set(true)"
+               (blur)="focussed.set(false)"
+        >
+        <div class="flex flex-row gap-2" (paste)="onPaste($event)">
+            @for (value of cellValues(); track $index) {
+                <div
+                    class="font-medium relative flex flex-col items-center justify-center min-w-10 h-12 rounded-sm bg-dark-4 border border-transparent cursor-text"
+                    [class.active-cell]="focussed() && (activeCell() === $index)"
+                    (click)="cellClicked($index)">
+                    <span>{{ value ?? '' }}</span>
+                </div>
+            }
+        </div>
+
+        <div class="flex flex-row w-full items-center justify-center gap-4">
+            <p>Code expires in <span class="font-medium">{{counter() | secondsToTime}}</span></p>
+            <app-button [data]="ResendCodeButtonConfig"></app-button>
+        </div>
+
+        <div class="!h-6 !w-6">
+            @if (waiting()) {
+                <mat-spinner @spinerAnimation class="!h-full !w-full"></mat-spinner>
+            }
+        </div>
+    </div>
+    <mat-dialog-actions align="end" class="relative w-full flex flex-col justify-center gap-6">
+        <button matButton="filled"
+                class="relative uppercase max-w-2xs h-10 w-full rounded-sm p-2 font-medium cursor-pointer transition-all duration-200
+                         bg-bronze text-dark-2 border-bronze border
+                         disabled:bg-dark-3 disabled:text-dark-6 disabled:!border-dark-4
+                         disabled:cursor-not-allowed"
+                [disabled]="!fullCode()"
+                [ngClass]="{'opacity-30': waiting()}"
+                (click)="continue()">
+            <span>Continue</span>
+        </button>
+
+        <button matButton="filled" class="cursor-pointer" (click)="close()">
+            Cancel
+        </button>
+    </mat-dialog-actions>
+
+</section>

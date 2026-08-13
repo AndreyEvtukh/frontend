@@ -19,28 +19,21 @@ export class MatchPasswordDirective implements Validator, OnDestroy {
     private subscription?: Subscription;
 
     validate(control: AbstractControl): ValidationErrors | null {
-        if (!control.parent || !this.matchTo) {
-            return null;
-        }
+        if (!control.parent || !this.matchTo) return null;
 
         const matchingControl = control.parent.get(this.matchTo);
-        if (!matchingControl) {
-            return null;
-        }
+        if (!matchingControl) return null;
 
-        // Подписываемся на изменения второго поля (только один раз)
+
         if (!this.subscription) {
             this.subscription = matchingControl.valueChanges.subscribe(() => {
                 control.updateValueAndValidity({ onlySelf: true, emitEvent: false });
             });
         }
 
-        // Также обновляем второй контрол, когда меняется текущий
         matchingControl.updateValueAndValidity({ onlySelf: true, emitEvent: false });
 
-        if (!control.value || !matchingControl.value) {
-            return null; // пока оба поля не заполнены — ошибку не показываем
-        }
+        if (!control.value || !matchingControl.value) return null;
 
         return control.value === matchingControl.value
             ? null

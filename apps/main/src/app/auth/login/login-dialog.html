@@ -1,7 +1,8 @@
 <section
-    class="bg-dark-2 flex flex-col items-center h-full px-8 pt-8 pb-4 overflow-hidden rounded-md border border-dark-3 justify-center items-center">
+    class="bg-dark-2 flex flex-col items-center h-full px-8 pt-8 pb-4 overflow-hidden rounded-md border border-dark-3 justify-center">
     <div class="flex flex-col items-center justify-center w-full gap-8">
-        <div class=" dialog-drag-handle w-16 h-16 aspect-square rounded-full bg-bronze-30 flex flex-col justify-center items-center">
+        <div
+            class=" dialog-drag-handle w-16 h-16 aspect-square rounded-full bg-bronze-30 flex flex-col justify-center items-center">
             <mat-icon [svgIcon]="ICONS.Login" class="color-bronze"></mat-icon>
         </div>
         <h2 class="uppercase font-medium">Sign In</h2>
@@ -65,23 +66,35 @@
             </button>
         </div>
 
-        <mat-dialog-actions align="end" class="w-full flex flex-col justify-center gap-6">
-            <button matButton="filled"
-                    class="uppercase max-w-2xs h-10 w-full rounded-sm p-2 font-medium cursor-pointer transition-all duration-200
+        <div class="relative flex flex-row justify-center items-center !h-6 !w-full">
+            @if (waiting()) {
+                <mat-spinner @spinerAnimation class="absolute !h-6 !w-6"></mat-spinner>
+            } @else if (response().ok === false && responseMsg()) {
+                <span @spinerAnimation
+                      class="flex justify-center text-center max-w-2xs w-full font-monospace absolute text-bronze py-2 px-4 bg-dark-1 rounded-sm border border-dark-4 text-10 text-dark-8"
+                      (click)="$event.stopImmediatePropagation()">
+                    {{ response().message }}
+                    <span class="top-1/2 transform -translate-y-1/2 absolute right-1 w-4 h-4 bg-dark-3 flex justify-center items-center rounded-full cursor-pointer" (click)="dismissResponseMsg()">&times;</span>
+                </span>
+            }
+        </div>
+    </div>
+    <mat-dialog-actions align="end" class="w-full flex flex-col justify-center gap-6">
+        <button matButton="filled"
+                class="uppercase max-w-2xs h-10 w-full rounded-sm p-2 font-medium cursor-pointer transition-all duration-200
                          bg-bronze text-dark-2 border-bronze border
                          disabled:bg-dark-3 disabled:text-dark-6 disabled:!border-dark-4
                          disabled:cursor-not-allowed"
-                    [disabled]="form.invalid"
-                    (click)="signIn()"
-            >
-                Sign In
-            </button>
+                [disabled]="form.invalid"
+                (click)="signIn()"
+        >
+            Sign In
+        </button>
 
-            <button matButton="filled"
-                    class="cursor-pointer"
-                    (click)="close()">
-                Cancel
-            </button>
-        </mat-dialog-actions>
-    </div>
+        <button matButton="filled"
+                class="cursor-pointer"
+                (click)="close()">
+            Cancel
+        </button>
+    </mat-dialog-actions>
 </section>

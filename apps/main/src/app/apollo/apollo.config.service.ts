@@ -8,7 +8,6 @@ import {
     InMemoryCache
 } from '@apollo/client/core';
 import { environment } from "../../../../../environments/environment";
-import { BFF } from "../models/constatnts";
 import { ErrorLink } from "@apollo/client/link/error";
 
 @Injectable({
@@ -24,10 +23,15 @@ export class ApolloConfigService {
 
         const errorLink = new ErrorLink(({ error }) => {
             if (CombinedGraphQLErrors.is(error)) {
-                error.errors.forEach(({ message, locations, path }) =>
-                    console.log(
-                        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-                    )
+                error.errors.forEach(({ message, locations, path, extensions }) =>
+                    {
+                        console.group("[GraphQL Error]:");
+                        console.log("Message:", message);
+                        if (extensions) console.log("Extensions:", JSON.stringify(extensions, null, 2));
+                        if (locations) console.log("Locations:", JSON.stringify(locations, null, 2));
+                        if (path) console.log("Path:", JSON.stringify(path, null, 2));
+                        console.groupEnd();
+                    }
                 );
             } else if (CombinedProtocolErrors.is(error)) {
                 error.errors.forEach(({ message, extensions }) =>

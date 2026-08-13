@@ -3,7 +3,26 @@ import { MutationOptions } from "@apollo/client";
 
 export namespace Register {
 
-    export const requestRegistration = ( form: any ): MutationOptions<any> => {
+    export const login = ( data: {email: string, password_hash: string }  ): MutationOptions<any> => {
+        return {
+            mutation: gql`
+                mutation login($input: LoginInput!) {
+                    login(input: $input) {
+                        success
+                        message
+                    }
+                }
+            `,
+            variables: {
+                input: {
+                    email: data.email,
+                    password_hash: data.password_hash
+                }
+            },
+        };
+    };
+
+    export const requestRegistration = ( data: {email: string, username: string, password_hash: string }  ): MutationOptions<any> => {
         return {
             mutation: gql`
                 mutation requestRegistration($input: RegisterRequestInput!) {
@@ -15,9 +34,28 @@ export namespace Register {
             `,
             variables: {
                 input: {
-                    email: form.email,
-                    username: form.username,
-                    password_hash: form.password_hash
+                    email: data.email,
+                    username: data.username,
+                    password_hash: data.password_hash
+                }
+            },
+        };
+    };
+
+    export const confirmRegistration = ( data: {email: string, code: string} ): MutationOptions<any> => {
+        return {
+            mutation: gql`
+                mutation confirmRegistration($input: ConfirmRegistrationInput!) {
+                    confirmRegistration(input: $input) {
+                        success
+                        message
+                    }
+                }
+            `,
+            variables: {
+                input: {
+                    email: data.email,
+                    code: data.code
                 }
             },
         };

@@ -3,14 +3,14 @@ import {
     computed,
     inject,
     input,
-    OnInit, PLATFORM_ID,
+    OnInit,
     Signal,
     signal
 } from '@angular/core';
 import { ICONS, NAV_LOCATION, ROUTE_PATH } from "../../models/app.model";
 import { Router } from "@angular/router";
 import { MatIcon } from "@angular/material/icon";
-import { isPlatformBrowser, NgClass } from "@angular/common";
+import { NgClass } from "@angular/common";
 import {
     animate,
     style,
