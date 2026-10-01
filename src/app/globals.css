@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+html {
+    scroll-behavior: smooth;
+    line-height: normal;
+
+    --mat-progress-spinner-active-indicator-color: var(--color-bronze);
+
+    body {
+        background: var(--color-dark-1);
+        color: var(--color-dark-9);
+    }
+}
+
+/* Light */
+@font-face {
+    font-family: "Light";
+    src: url("../assets/fonts/light.ttf") format("woff");
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Medium */
+@font-face {
+    font-family: "Medium";
+    src: url("../assets/fonts/medium.ttf") format("woff");
+    font-style: normal;
+    font-display: swap;
+}
+
+@theme {
+    --background: #ffffff;
+    --foreground: #171717;
+
+    --color-transparent: #000000000;
+    --color-black: #000;
+    --color-dark-1: #14161a;
+    --color-dark-2: #242529;
+    --color-dark-2-30: #24252966;
+    --color-dark-3: #2d2f33;
+    --color-dark-3-30: #2d2f3366;
+    --color-dark-4: #4d4d4d;
+    --color-dark-6: #666666;
+    --color-dark-7: #808080;
+    --color-dark-8: #999999;
+    --color-dark-9: #f2f2f2;
+    --color-white: #fff;
+    --color-bronze: #ffc166;
+    --color-bronze-hover: #ffb43d;
+    --color-bronze-30: #ffc16616;
+    --color-pink: #93278f;
+    --color-gold: #ffff00;
+
+    --width-1440: 1440px;
+
+    --text-10: 10px;
+    --text-12: 12px;
+    --text-14: 14px;
+    --text-16: 16px;
+    --text-18: 18px;
+    --text-24: 24px;
+    --text-36: 36px;
+
+    --shadow-banner: 0 0 50px rgb(0 0 0 / 0.25);
+    --shadow-sm: 0 0 30px rgb(0 0 0 / 0.6);
+
+    --font-light: "Light";
+    --font-medium: "Medium";
+    --font-monospace: monospace, ui-monospace, SFMono-Regular;
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    /*--font-sans: var(--font-geist-sans);*/
+    /*--font-mono: var(--font-geist-mono);*/
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: var(--color-dark-1);
+        --foreground: var(--color-dark-9);
+    }
+}
+
+@utility gradient-black-1-fade {
+    background-image: linear-gradient(to bottom, var(--color-dark-1) 0%, transparent 100%);
+}
+
+@utility gradient-fade-black-2 {
+    background-image: linear-gradient(to top, var(--color-dark-2) 0%, transparent 100%);
+}
+
+@utility gradient-fade-black {
+    background-image: linear-gradient(to top, #000 0%, transparent 100%);
+}
+
+@utility gradient-black-fade {
+    background-image: linear-gradient(to bottom, #000 0%, transparent 100%);
+}
+
+@utility bg-grad-fade-to-dark-3 {
+    background-image: linear-gradient(to right, var(--color-dark-3) 0%, transparent 100%);
+}
+
+@utility bg-grad-dark-3-to-fade {
+    background-image: linear-gradient(to left, var(--color-dark-3) 0%, transparent 100%);
+}
+
+.bg-waves {
+    background-image: url("../assets/svg/waves.svg");
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.bg-dots {
+    background-image: url("../../public/svg/dots.svg");
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: 60%;
+}
+
+.bg-matrix {
+    background-image: url("../../public/svg/matrix.svg");
+    background-position: top;
+    background-repeat: repeat-x;
+    background-size: contain;
+}
+
+.arlo-1 {
+    background-image: url("../../public/img/arlo-1.jpg");
+}
+
+.arlo-2 {
+    background-image: url("../../public/img/arlo-2.jpg");
+}
+
+.arlo-3 {
+    background-image: url("../../public/img/arlo-3.jpg");
+}
+
+.arlo-4 {
+    background-image: url("../../public/img/arlo-4.jpg");
+}
+
+.arlo-5 {
+    background-image: url("../../public/img/arlo-5.jpg");
+}
+
+.verisure-1 {
+    background-image: url("../../public/img/verisure-1.jpg");
+}
+
+.verisure-2 {
+    background-image: url("../../public/img/verisure-2.jpg");
+}
+
+.verisure-3 {
+    background-image: url("../../public/img/verisure-3.jpg");
+}
+
+.hotel-1 {
+    background-image: url("../../public/img/hotel-1.jpg");
+}
+
+.hotel-2 {
+    background-image: url("../../public/img/hotel-2.jpg");
+}
+
+.hotel-3 {
+    background-image: url("../../public/img/hotel-3.jpg");
+}
+
+.hotel-4 {
+    background-image: url("../../public/img/hotel-4.jpg");
+}
+
+.asbis-1 {
+    background-image: url("../../public/img/asbis-1.jpg");
+}
+
+.asbis-2 {
+    background-image: url("../../public/img/asbis-2.jpg");
+}
+
+.asbis-3 {
+    background-image: url("../../public/img/asbis-3.jpg");
+}
+
+.portfolio {
+    background-image: url("../../public/img/portfolio.jpg");
+}
+
+.scrolled {
+    display: flex;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &.vertical {
+        margin-right: -20px;
+        padding-right: 20px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    &::-webkit-scrollbar {
+        width: 5px !important;
+        height: 8px !important;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #0000;
+        cursor: pointer;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--color-dark-4);
+        border-radius: 10px;
+        transition: background-color .3s ease;
+        cursor: default;
+
+        &:hover {
+            background-color: var(--color-dark-6) !important;
+        }
+    }
+}
+
+.active-cell {
+    transition: all 0.2s ease-in-out;
+    border: var(--color-bronze) 1px solid;
+    background-color: var(--color-dark-9);
+    color: var(--color-dark-1);
+}
+
+.active-cell::after {
+    content: "";
+    width: 2px;
+    height: 24px;
+    position: absolute;
+    bottom: calc(50% - 12px);
+    left: 50%;
+    transform: translateX(-10px);
+    background: var(--color-dark-1);
+    animation: blink-animation 1s steps(2) infinite;
+}
+
+@keyframes blink-animation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@layer utilities {
+    .autofill-bronze:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 100px color-mix(in srgb, var(--color-bronze) 10%, var(--color-dark-4)) inset !important;
+        -webkit-text-fill-color: var(--color-dark-9);
+        caret-color: var(--color-dark-9);
+        transition: background-color 9999s ease-in-out 0.2s;
+    }
+}
