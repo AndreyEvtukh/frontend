@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Geofences_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<g>
+	<defs>
+		<path id="Geofences_1_" d="M3.75,8.835c0-4.051,3.526-7.335,7.875-7.335S19.5,4.784,19.5,8.835c0,7.078-7.875,13.665-7.875,13.665
+			S3.75,15.913,3.75,8.835z M9.525,8.835c0,1.16,0.94,2.1,2.1,2.1s2.1-0.94,2.1-2.1s-0.94-2.1-2.1-2.1S9.525,7.676,9.525,8.835z"/>
+	</defs>
+	<use xlink:href="#Geofences_1_"  overflow="visible" fill-rule="evenodd" clip-rule="evenodd"/>
+	<clipPath id="SVGID_00000010311902737318408920000006787489987288016564_">
+		<use xlink:href="#Geofences_1_"  overflow="visible"/>
+	</clipPath>
+	
+		<rect clip-path="url(#SVGID_00000010311902737318408920000006787489987288016564_)" fill-rule="evenodd" clip-rule="evenodd" width="24" height="24"/>
+</g>
+</svg>

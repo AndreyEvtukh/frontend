@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "dev": {
+      "cache": true
+    }
+  },
+  "defaultBase": "master",
+  "analytics": false,
+  "neverConnectToCloud": true
+}
