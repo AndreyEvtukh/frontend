@@ -1,33 +1,18 @@
-import baseConfig from './eslint.base.config.mjs';
-import { htmlTemplateRules, typescriptRules } from './eslint.rules.mjs';
-import angularTemplateParser from '@angular-eslint/template-parser';
-import angularTemplatePlugin from '@angular-eslint/eslint-plugin-template';
-import angularPlugin from '@angular-eslint/eslint-plugin';
+import {defineConfig, globalIgnores} from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 
-export default [
-    ...baseConfig,
-    {
-        ignores: [
-            '**/dist/**',
-            '**/*.js',
-            '**/*.jsx',
-            'apps/**/src/app/legacy/**/*.html',
-            'libs/**/*.html',
-        ],
-    },
-    {
-        files: ['**/*.{ts,tsx,cts,mts,cjs,mjs}'],
-        plugins: { '@angular-eslint': angularPlugin },
-        rules: typescriptRules,
-    },
-    {
-        files: ['**/*.html'],
-        languageOptions: {
-            parser: angularTemplateParser,
-        },
-        plugins: {
-            '@angular-eslint/template': angularTemplatePlugin,
-        },
-        rules: htmlTemplateRules,
-    },
-];
+const eslintConfig = defineConfig([
+    ...nextVitals,
+    ...nextTs,
+    // Override default ignores of eslint-config-next.
+    globalIgnores([
+        // Default ignores of eslint-config-next:
+        ".next/**",
+        "out/**",
+        "build/**",
+        "next-env.d.ts",
+    ]),
+]);
+
+export default eslintConfig;
