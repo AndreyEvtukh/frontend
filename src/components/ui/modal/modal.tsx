@@ -64,27 +64,31 @@ const AppModal = () => {
                     </ModalAnimation>
                 )}
 
-                {modalId === 'verify' && modalData && (
-                    <ModalAnimation key={modalId}>
-                        <VerifyForm
-                            email={modalData.email}
-                            username={modalData.username}
-                            password={modalData.password}
-                            expiresAt={modalData.expiresAt}
-                        />
-                    </ModalAnimation>
-                )}
+                {modalId === 'verify' &&
+                    modalData &&
+                    'email' in modalData && (
+                        <ModalAnimation key={modalId}>
+                            <VerifyForm
+                                email={modalData.email}
+                                username={modalData.username}
+                                password={modalData.password}
+                                expiresAt={modalData.expiresAt}
+                            />
+                        </ModalAnimation>
+                    )}
 
-                {modalId === 'testimonial' && (
-                    <ModalAnimation key={modalId}>
-                        <Testimonial
-                            authorName={modalData.authorName}
-                            authorPosition={modalData.authorPosition}
-                            text={modalData.text}
-                            date={modalData.date}
-                        />
-                    </ModalAnimation>
-                )}
+                {modalId === 'testimonial' &&
+                    modalData &&
+                    'authorName' in modalData && (
+                        <ModalAnimation key={modalId}>
+                            <Testimonial
+                                authorName={modalData.authorName}
+                                authorPosition={modalData.authorPosition}
+                                text={modalData.text}
+                                date={modalData.date}
+                            />
+                        </ModalAnimation>
+                    )}
             </AnimatePresence>
         </Dialog>
     );
