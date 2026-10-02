@@ -7,6 +7,7 @@ import AppModal from '@/components/ui/modal/modal';
 import AppApolloProvider from '@/apollo/apollo-provider';
 import AuthInitializer from '@/features/auth/authInitializer';
 import GoogleTranslate from '@/components/ui/translate/translate';
+import { Analytics } from '@vercel/analytics/next';
 
 const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL ?? 'https://andrey-evtukh.vercel.app';
@@ -137,6 +138,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
             <AppModal />
         </AppApolloProvider>
     </Providers>
+    <Analytics />
     </body>
     </html>
 );
