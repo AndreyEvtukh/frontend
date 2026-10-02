@@ -56,6 +56,7 @@ const AppNavigation = ({ location = Navigation.LOCATION.HEADER }: {
                         transition: { duration: 0.2, ease: "easeIn" }
                     }}
                     className="flex flex-row gap-2 items-center fixed z-50 top-6 l+eft-1/2 -t+ranslate-x-[50%] scale-75 self-center
+                    bg-dark-3 p-1 rounded-sm border border-dark-6
                     lg:flex-col lg:top-1/5 lg:left-4 lg:translate-x-[16%] lg:scale-100"
                 >
                     <nav

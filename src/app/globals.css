@@ -67,6 +67,8 @@ html {
     --font-light: "Light";
     --font-medium: "Medium";
     --font-monospace: monospace, ui-monospace, SFMono-Regular;
+
+    --breakpoint-md: 740px;
 }
 
 @theme inline {
