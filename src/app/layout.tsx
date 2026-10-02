@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { ReactNode } from 'react';
@@ -137,6 +138,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
             <AppModal />
         </AppApolloProvider>
     </Providers>
+    <Analytics />
     </body>
     </html>
 );
