@@ -5,7 +5,7 @@ import AppButton from "@/components/ui/button/button";
 const retro = [
     {
         id: 0,
-        value: "11+",
+        value: "12+",
         text: "years\nexperience"
     }, {
         id: 1,
@@ -14,7 +14,7 @@ const retro = [
     }, {
         id: 2,
         value: "18",
-        text: "projects completed\non 8 countries"
+        text: "projects delivered\nacross 8 countries"
     }
 ];
 
@@ -77,7 +77,7 @@ const AppBanner = () => {
                         </h2>
                     </header>
                     <p className="2xl:ml-12 font-light text-14 2xl:text-16 hidden md:block ml-12 -mr-24">
-                        Senior Full-Stack Developer with 20+ years in software engineering and 10+ years in web
+                        Senior Full-Stack Developer with 20+ years in software engineering and 12+ years in web
                         development. Strong in React, Angular, TypeScript, Java, and Spring Boot, with experience
                         building scalable enterprise applications, REST/GraphQL APIs, authentication, and data
                         integrations. Experienced in owning solutions end to end — from frontend architecture to backend

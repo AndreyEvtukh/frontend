@@ -1,24 +1,24 @@
-import { Analytics } from "@vercel/analytics/next"
-import type { Metadata, Viewport } from 'next';
-import './globals.css';
-import { ReactNode } from 'react';
+import { Analytics } from "@vercel/analytics/next";
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
+import { ReactNode } from "react";
 
-import Providers from '@/app/providers';
-import AppModal from '@/components/ui/modal/modal';
-import AppApolloProvider from '@/apollo/apollo-provider';
-import AuthInitializer from '@/features/auth/authInitializer';
-import GoogleTranslate from '@/components/ui/translate/translate';
+import Providers from "@/app/providers";
+import AppModal from "@/components/ui/modal/modal";
+import AuthInitializer from "@/features/auth/authInitializer";
+import GoogleTranslate from "@/components/ui/translate/translate";
+import AppApolloProvider from "@/apollo/apollo-provider";
 
 const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://andrey-evtukh.vercel.app';
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://andrey-evtukh.vercel.app";
 
-const siteTitle = 'Andrey Evtukh | Senior Full-Stack Developer';
+const siteTitle = "Andrey Evtukh | Senior Full-Stack Developer";
 
 const ogImage = {
-    url: '/images/og-image.jpg',
+    url: "/images/og-image.jpg",
     width: 800,
     height: 800,
-    alt: 'Andrey Evtukh — Senior Full-Stack Developer'
+    alt: "Andrey Evtukh — Senior Full-Stack Developer"
 };
 
 export const metadata: Metadata = {
@@ -26,49 +26,47 @@ export const metadata: Metadata = {
 
     title: {
         default: siteTitle,
-        template: '%s | Andrey Evtukh'
+        template: "%s | Andrey Evtukh"
     },
 
     description:
-        'Senior Full-Stack Developer with 20+ years in software engineering and 10+ years in web development. React, Angular, TypeScript, Java and Spring Boot.',
+        "Senior Full-Stack Developer with 20+ years in software engineering and 10+ years in web development. React, Angular, TypeScript, Java and Spring Boot.",
 
     keywords: [
-        'Andrey Evtukh',
-        'Full-Stack Developer',
-        'Senior Full-Stack Developer',
-        'React Developer',
-        'Angular Developer',
-        'Java Developer',
-        'Spring Boot Developer',
-        'TypeScript Developer',
-        'Frontend Developer',
-        'Backend Developer'
+        "Andrey Evtukh",
+        "Full-Stack Developer",
+        "Senior Full-Stack Developer",
+        "React Developer",
+        "Angular Developer",
+        "Java Developer",
+        "Spring Boot Developer",
+        "TypeScript Developer",
+        "Frontend Developer",
+        "Backend Developer"
     ],
 
-    authors: [{ name: 'Andrey Evtukh', url: siteUrl }],
-    creator: 'Andrey Evtukh',
-    publisher: 'Andrey Evtukh',
+    authors: [{ name: "Andrey Evtukh", url: siteUrl }],
+    creator: "Andrey Evtukh",
+    publisher: "Andrey Evtukh",
 
     alternates: {
-        canonical: '/'
+        canonical: "/"
     },
 
     openGraph: {
-        type: 'website',
-        locale: 'en_US',
-        url: '/',
-        siteName: 'Andrey Evtukh',
+        type: "website",
+        locale: "en_US",
+        url: "/",
+        siteName: "Andrey Evtukh",
         title: siteTitle,
-        description:
-            'Senior Full-Stack Developer specializing in React, Angular, TypeScript, Java and Spring Boot.',
+        description: "Senior Full-Stack Developer specializing in React, Angular, TypeScript, Java and Spring Boot.",
         images: [ogImage]
     },
 
     twitter: {
-        card: 'summary_large_image',
+        card: "summary_large_image",
         title: siteTitle,
-        description:
-            'Senior Full-Stack Developer specializing in React, Angular, TypeScript, Java and Spring Boot.',
+        description: "Senior Full-Stack Developer specializing in React, Angular, TypeScript, Java and Spring Boot.",
         images: [ogImage.url]
     },
 
@@ -78,9 +76,9 @@ export const metadata: Metadata = {
         googleBot: {
             index: true,
             follow: true,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
-            'max-video-preview': -1
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1
         }
     },
 
@@ -89,26 +87,26 @@ export const metadata: Metadata = {
     },
 
     icons: {
-        icon: '/favicon.ico',
-        apple: '/apple-touch-icon.png'
+        icon: "/favicon.ico",
+        apple: "/apple-touch-icon.png"
     }
 };
 
 export const viewport: Viewport = {
-    width: 'device-width',
+    width: "device-width",
     initialScale: 1,
-    themeColor: '#111111'
+    themeColor: "#111111"
 };
 
 const personJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Andrey Evtukh',
-    jobTitle: 'Senior Full-Stack Developer',
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Andrey Evtukh",
+    jobTitle: "Senior Full-Stack Developer",
     url: siteUrl,
     sameAs: [
-        'https://github.com/AndreyEvtukh',
-        'https://www.linkedin.com/in/andrey-evtukh/'
+        "https://github.com/AndreyEvtukh",
+        "https://www.linkedin.com/in/andrey-evtukh/"
     ]
 };
 
@@ -125,7 +123,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
     <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-            __html: JSON.stringify(personJsonLd).replace(/</g, '\\u003c')
+            __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c")
         }}
     />
 

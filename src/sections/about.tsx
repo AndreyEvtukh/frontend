@@ -13,7 +13,7 @@ const AboutSection = () => {
     const links = [
         {
             id: 0,
-            title: 'Design',
+            title: 'Architecture',
             content: 'Turning ideas into interfaces people actually enjoy using.',
             link: '/porfolio',
             icon: Icon.NAME.DESIGN

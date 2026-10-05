@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import AppIcon from '@/components/ui/icon/icon';
-import { Icon } from '@/config/icon';
-import modalsSlice, { openModal } from '@/store/modals/modals.slice';
-import { useDispatch } from 'react-redux';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import AppIcon from "@/components/ui/icon/icon";
+import { Icon } from "@/config/icon";
+import modalsSlice, { openModal } from "@/store/modals/modals.slice";
+import { useDispatch } from "react-redux";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 
 const ResumeSection = () => {
@@ -14,16 +14,16 @@ const ResumeSection = () => {
             <div className="absolute w-full min-h-1/2 gradient-black-fade top-0 opacity-30"></div>
 
             <div className={[
-                'relative flex flex-col items-center p-4 md:p-8 lg:p-12 xl:p-24 pb-0! pt-24!',
-                expanded ? 'max-h-[5000px]' : 'max-h-[600px]',
-                'overflow-hidden transition-[max-height] duration-700 ease-in-out'
-            ].join(' ')}>
+                "relative flex flex-col items-center p-4 md:p-8 lg:p-12 xl:p-24 pb-0! pt-24!",
+                expanded ? "max-h-[5000px]" : "max-h-[600px]",
+                "overflow-hidden transition-[max-height] duration-700 ease-in-out"
+            ].join(" ")}>
 
                 <div className="z-10 opacity-40 color-dark-9
                         transform scale-75 md:scale-100 -mt-16 mb-16
                         after:content-[''] after:block after:absolute after:h-8 after:top-10 after:left-1/2 after:border-r after:border-dashed after:border-dark-8
                         before:content-[''] before:block before:absolute before:h-2 before:w-2 before:rounded-full before:top-16 before:left-1/2 before:border before:border-dark-8 before:-translate-x-1/2 before:translate-y-full">
-                    <AppIcon name={Icon.NAME.MICE} className="color-dark-7 h-10 aspect-square"/>
+                    <AppIcon name={Icon.NAME.MICE} className="color-dark-7 h-10 aspect-square" />
                 </div>
 
                 <header>
@@ -35,19 +35,19 @@ const ResumeSection = () => {
                         className="w-full p-0 md:p-8 lg:p-12 relative flex flex-col justify-center pb-0! text-14 md:text-16">
                         <h3 className="font-medium text-16 md:text-18">Education</h3>
 
-                        <div className={'grid grid-cols-3'}>
+                        <div className={"grid grid-cols-3"}>
                             <div
-                                className={'col-span-1 text-end p-2 md:p-4 lg:p-6 border-t border-r border-dark-4 rounded-r-lg rounded-b-none'}>
-                                <div className={'font-medium text-bronze text-14 md:text-16'}>Sep 1996 – Jun&#160;2001
+                                className={"col-span-1 text-end p-2 md:p-4 lg:p-6 border-t border-r border-dark-4 rounded-r-lg rounded-b-none"}>
+                                <div className={"font-medium text-bronze text-14 md:text-16"}>Sep 1996 – Jun&#160;2001
                                 </div>
                                 <p className="text-dark-6 mt-2 text-14 md:text-16">Belarusian State University of
                                     Informatics and
                                     Radioelectronics</p>
                             </div>
 
-                            <div className={'col-span-2 text-start p-2 md:p-4 lg:p-6 relative'}>
+                            <div className={"col-span-2 text-start p-2 md:p-4 lg:p-6 relative"}>
                                 <div
-                                    className={'pl-2 flex items-center font-medium before:absolute before:left-0 before:block before:w-1 before:h-1 before:rounded-full  before:outline-2 before:outline-[#ffc166] before:shadow-[0_0_0_6px_#ffc16633] before:bg-dark-1 before:transform before:-translate-x-1/2'}>
+                                    className={"pl-2 flex items-center font-medium before:absolute before:left-0 before:block before:w-1 before:h-1 before:rounded-full  before:outline-2 before:outline-[#ffc166] before:shadow-[0_0_0_6px_#ffc16633] before:bg-dark-1 before:transform before:-translate-x-1/2"}>
                                     Bachelor’s Degree
                                 </div>
                                 <ul className="list-disc gap-1 flex flex-col mt-2 pl-4 lg:pl-6">
@@ -65,16 +65,16 @@ const ResumeSection = () => {
                         className="w-full p-0 md:p-8 lg:p-12 relative flex flex-col justify-center pt-0! text-14 md:text-16">
                         <h3 className="font-medium text-16 md:text-18">Experience</h3>
 
-                        <div className={'grid grid-cols-3'}>
+                        <div className={"grid grid-cols-3"}>
                             <div
-                                className={'col-span-1 text-end p-2 md:p-4 lg:p-6 border-t border-r border-dark-4 rounded-r-lg rounded-b-none'}>
-                                <div className={'font-medium text-bronze'}>Oct 2025 - Current</div>
+                                className={"col-span-1 text-end p-2 md:p-4 lg:p-6 border-t border-r border-dark-4 rounded-r-lg rounded-b-none"}>
+                                <div className={"font-medium text-bronze"}>Oct 2025 - Current</div>
                                 <p className="text-dark-6 mt-2">ASBIS</p>
                             </div>
 
-                            <div className={'col-span-2 text-start p-2 md:p-4 lg:p-6 relative'}>
+                            <div className={"col-span-2 text-start p-2 md:p-4 lg:p-6 relative"}>
                                 <div
-                                    className={'pl-2 flex items-center font-medium before:absolute before:left-0 before:block before:w-1 before:h-1 before:rounded-full  before:outline-2 before:outline-[#ffc166] before:shadow-[0_0_0_6px_#ffc16633] before:bg-dark-1 before:transform before:-translate-x-1/2'}>
+                                    className={"pl-2 flex items-center font-medium before:absolute before:left-0 before:block before:w-1 before:h-1 before:rounded-full  before:outline-2 before:outline-[#ffc166] before:shadow-[0_0_0_6px_#ffc16633] before:bg-dark-1 before:transform before:-translate-x-1/2"}>
                                     Fullstack Developer
                                 </div>
                                 <ul className="list-disc pl-4 lg:pl-6 gap-1 flex flex-col mt-2">
@@ -101,14 +101,14 @@ const ResumeSection = () => {
                                 </ul>
                             </div>
 
-                            <div className={'col-span-1 text-end p-2 md:p-4 lg:p-6 border-r border-dark-4'}>
-                                <div className={'font-medium text-bronze'}>Apr 2025 - Oct 2025</div>
+                            <div className={"col-span-1 text-end p-2 md:p-4 lg:p-6 border-r border-dark-4"}>
+                                <div className={"font-medium text-bronze"}>Apr 2025 - Oct 2025</div>
                                 <p className="text-dark-6 mt-2">ITS Poland (Verisure)</p>
                             </div>
 
-                            <div className={'col-span-2 text-start p-2 md:p-4 lg:p-6 relative'}>
+                            <div className={"col-span-2 text-start p-2 md:p-4 lg:p-6 relative"}>
                                 <div
-                                    className={'pl-2  flex items-center font-medium before:absolute before:left-0 before:block before:w-1 before:h-1 before:rounded-full  before:outline-2 before:outline-[#ffc166] before:shadow-[0_0_0_6px_#ffc16633] before:bg-dark-1 before:transform before:-translate-x-1/2'}>
+                                    className={"pl-2  flex items-center font-medium before:absolute before:left-0 before:block before:w-1 before:h-1 before:rounded-full  before:outline-2 before:outline-[#ffc166] before:shadow-[0_0_0_6px_#ffc16633] before:bg-dark-1 before:transform before:-translate-x-1/2"}>
                                     Fullstack Developer
                                 </div>
                                 <ul className="list-disc pl-6 gap-1 flex flex-col mt-2">
@@ -125,34 +125,37 @@ const ResumeSection = () => {
                                 </ul>
                             </div>
 
-                            <div className={'col-span-1 text-end p-2 md:p-4 lg:p-6 border-r border-dark-4'}>
-                                <div className={'font-medium text-bronze'}>Nov 2014 - Feb 2025</div>
+                            <div className={"col-span-1 text-end p-2 md:p-4 lg:p-6 border-r border-dark-4"}>
+                                <div className={"font-medium text-bronze"}>Nov 2014 - Feb 2025</div>
                                 <p className="text-dark-6 mt-2">Arlo Professional</p>
                             </div>
 
-                            <div className={'col-span-2 text-start p-2 md:p-4 lg:p-6 relative'}>
+                            <div className={"col-span-2 text-start p-2 md:p-4 lg:p-6 relative"}>
                                 <div
-                                    className={'flex items-center font-medium before:absolute before:left-0 before:block before:w-1 before:h-1 before:rounded-full  before:outline-2 before:outline-[#ffc166] before:shadow-[0_0_0_6px_#ffc16633] before:bg-dark-1 before:transform before:-translate-x-1/2'}>
+                                    className={"flex items-center font-medium before:absolute before:left-0 before:block before:w-1 before:h-1 before:rounded-full  before:outline-2 before:outline-[#ffc166] before:shadow-[0_0_0_6px_#ffc16633] before:bg-dark-1 before:transform before:-translate-x-1/2"}>
                                     Senior Frontend Developer/Feature Owner
                                 </div>
                                 <ul className="list-disc pl-6 gap-1 flex flex-col mt-2">
-                                    <li>Developed cutting-edge front-end applications using Angular17+, TypeScript, and
-                                        MaterialUI to enhance user experience and functionality
+                                    <li> Developed enterprise front-end applications using Angular 17+, TypeScript, and
+                                        Material UI, delivering scalable and maintainable user experiences
                                     </li>
-                                    <li>Implemented MQTT and SSE/SSH protocols for real-time data streaming and
-                                        communication
+                                    <li> Developed and integrated video streaming solutions using DASH, HLS, SIP, and
+                                        FlowPlayer, focusing on reliable playback and performance
                                     </li>
-                                    <li>Utilized DASH/HLS/SIP/FlowPlayer video streaming technologies to optimize video
-                                        playback performance
+                                    <li> Implemented real-time communication and data streaming using MQTT and
+                                        Server-Sent Events (SSE)
                                     </li>
-                                    <li>Collaborated with cross-functional teams to integrate Amplitude, LaunchDarkly,
-                                        and
-                                        FireBase for enhanced analytics and feature toggling capabilities
+                                    <li> Integrated REST and GraphQL APIs to connect front-end applications with backend
+                                        services
                                     </li>
-                                    <li>Participated in architecture improvements, code reviews, and technical solution
-                                        design
+                                    <li> Integrated Amplitude, LaunchDarkly, and Firebase for product analytics, feature
+                                        management, and controlled feature rollouts
                                     </li>
-                                    <li>Investigated production issues and improved CI/automation processes
+                                    <li> Contributed to application architecture, technical solution design, code
+                                        reviews, and development standards
+                                    </li>
+                                    <li> Investigated production issues, optimized application performance, and improved
+                                        CI/CD and development automation processes
                                     </li>
                                 </ul>
                             </div>
@@ -161,7 +164,7 @@ const ResumeSection = () => {
                     </article>
                 </div>
 
-                {!expanded && <div className={'w-full absolute outline-0 h-36 gradient-fade-black-2 bottom-0'}></div>}
+                {!expanded && <div className={"w-full absolute outline-0 h-36 gradient-fade-black-2 bottom-0"}></div>}
             </div>
             <button
                 type="button"
@@ -170,7 +173,7 @@ const ResumeSection = () => {
                     px-6 py-2 text-bronze border border-bronze rounded
                     transition-all duration-300 hover:bg-bronze hover:text-dark-1"
             >
-                {expanded ? 'Show less' : 'Show more'}
+                {expanded ? "Show less" : "Show more"}
             </button>
         </section>);
 };
