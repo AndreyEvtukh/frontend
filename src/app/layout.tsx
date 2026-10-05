@@ -2,7 +2,6 @@ import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ReactNode } from "react";
-
 import Providers from "@/app/providers";
 import AppModal from "@/components/ui/modal/modal";
 import AuthInitializer from "@/features/auth/authInitializer";
