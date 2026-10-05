@@ -84,10 +84,13 @@ export default function ContactsSection() {
                 type: 'info',
                 message: 'Message sent successfully'
             }));
+
             setEmail('');
             setUserName('');
             setMessage('');
+
             setUserNameTouched(false);
+            setEmailTouched(false);
             setMessageTouched(false);
         }
     };
