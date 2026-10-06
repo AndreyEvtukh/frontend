@@ -4,6 +4,7 @@ import AppIcon from '@/components/ui/icon/icon';
 import { Icon } from '@/config/icon';
 import { useEffect, useState } from 'react';
 import ProjectsSlider from '@/components/layout/projectsSlider';
+import MiceIcon from "@/components/layout/mice-icon";
 
 const projectsProps = [
     {
@@ -179,6 +180,9 @@ export default function ProjectsSection() {
         >
             <div className="relative w-full flex flex-col items-center
                     p-4 md:p-8 lg:p-12 xl:p-24 pb-0! pt-24!">
+
+                <MiceIcon/>
+
                 <h3 className="font-light text-center text-18 text-bronze uppercase p-2 lg:p-0">
                     Projects
                 </h3>
