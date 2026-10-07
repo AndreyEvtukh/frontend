@@ -197,7 +197,7 @@ export default function ProjectsSection() {
                     <article key={activeProjectData.id} className="
                             relative flex flex-col w-full
                             rounded-md border border-dark-4 bg-dark-2 px-2 xm:px-8 pb-16 pt-8
-                            2xl:px-16 m-16 mb-8
+                            2xl:px-16 m-16 mb-0
                         ">
 
                         <div className="group absolute right-2 top-2 md:top-8 md:right-8  z-50">
